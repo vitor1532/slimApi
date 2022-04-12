@@ -29,4 +29,4 @@ $container['db'] = function($c) {
 
     return $capsule;
 
-}
+};
