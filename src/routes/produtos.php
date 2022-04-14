@@ -18,6 +18,44 @@ $app->group('/api/v1', function() {
 
     });
 
+    $this->post('/produtos/add', function($request, $response) {
+
+        $dados = $request->getParsedBody();
+        $produto = Produto::create( $dados );
+        return $response->withJson( $produto );
+
+    });
+
+    //Recupera produto para determinado id
+    $this->get('/produtos/lista/{id}', function($request, $response, $args) {
+
+        $produto = Produto::findOrFail( $args['id'] );
+        return $response->withJson( $produto );
+
+    });
+
+    //Atualiza produto para determinado id
+    $this->put('/produtos/att/{id}', function($request, $response, $args) {
+
+        $dados = $request->getParsedBody();
+
+        $produto = Produto::findOrFail( $args['id'] );
+        $produto->update( $dados );
+        return $response->withJson( $produto );
+
+    });
+
+    //remove produto para determinado id
+    $this->get('/produtos/remove/{id}', function($request, $response, $args) {
+
+        $produto = Produto::findOrFail( $args['id'] );
+        $produto->delete();
+        return $response->withJson( $produto );
+
+    });
+
 });
+
+
 
 ?>
