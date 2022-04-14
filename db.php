@@ -31,4 +31,22 @@ $schema->create($tabela, function($table) {
 
 });
 
+
+//preenche a tabela
+$db->table($tabela)->insert([
+    'titulo' => 'Smartphone Motorola Moto G6 32GB Dual Chip',
+    'descricao' => 'Android Oreo - 8.0 Tela 5.7',
+    'preco' => 899.00,
+    'fabricante' => 'Motorola',
+    'dt_criacao' => '2019-10-22',
+]);
+
+$db->table($tabela)->insert([
+    'titulo' => 'iPhone X 64GB Dual Chip',
+    'descricao' => 'Tela 5.8',
+    'preco' => 4999.00,
+    'fabricante' => 'Apple',
+    'dt_criacao' => '2020-10-22',
+]);
+
 ?>

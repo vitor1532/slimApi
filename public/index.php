@@ -23,6 +23,7 @@ require __DIR__ . '/../src/dependencies.php';
 require __DIR__ . '/../src/middleware.php';
 
 // Register routes
+$db = $container->get('db');
 require __DIR__ . '/../src/routes.php';
 
 // Run app
