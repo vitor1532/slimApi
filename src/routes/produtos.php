@@ -20,6 +20,8 @@ $app->group('/api/v1', function() {
 
     $this->post('/produtos/add', function($request, $response) {
 
+        //validar
+
         $dados = $request->getParsedBody();
         $produto = Produto::create( $dados );
         return $response->withJson( $produto );
