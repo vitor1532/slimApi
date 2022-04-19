@@ -5,13 +5,10 @@ use Slim\Http\Response;
 use App\Models\Produto;
 use App\Models\Usuario;
 use \Firebase\JWT\JWT;
-/*
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
-*/
 
-//rotas para geração de token
-$app->post('/api/token', function($request, $response) {
+
+// Rotas para geração de token
+$app->post('/api/token', function($request, $response){
 
 	$dados = $request->getParsedBody();
 
@@ -20,11 +17,11 @@ $app->post('/api/token', function($request, $response) {
 
 	$usuario = Usuario::where('email', $email)->first();
 
-	if(!is_null($usuario) && (md5($senha) === $usuario->senha) ) {
+	if( !is_null($usuario) && (md5($senha) === $usuario->senha ) ){
 
 		//gerar token
 		$secretKey = $this->get('settings')['secretKey'];
-		$chaveAcesso = JWT::encode($usuario, $secretKey, 'RS256');
+		$chaveAcesso = JWT::encode([$usuario], $secretKey, 'HS256');
 
 		return $response->withJson([
 			'chave' => $chaveAcesso
@@ -37,5 +34,3 @@ $app->post('/api/token', function($request, $response) {
 	]);
 
 });
-
-?>
